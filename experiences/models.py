@@ -33,6 +33,13 @@ class Experience(CommonModel):
         "experiences.Perk",
     )
 
+    category = models.ForeignKey(
+        "categories.Category",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
+
     def __str__(self):
         return self.name
 
