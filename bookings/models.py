@@ -26,7 +26,7 @@ class Booking(CommonModel):
         blank=True,
         on_delete=models.SET_NULL
     )
-    experiences = models.ForeignKey(
+    experience = models.ForeignKey(
         "experiences.Experience",
         null=True,
         blank=True,
