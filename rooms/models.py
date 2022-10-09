@@ -37,8 +37,11 @@ class Room(CommonModel):
         on_delete=models.SET_NULL,
     )
 
-    def __str__(self):
-        return self.name
+    def __str__(room):
+        return room.name
+
+    def total_amenities(room):
+        return room.amenities.count()
 
 
 class Amenity(CommonModel):
