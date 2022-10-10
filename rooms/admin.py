@@ -16,6 +16,12 @@ class RoomAdmin(admin.ModelAdmin):
         "created_at",
     )
 
+    search_fields = (
+        "name",
+        "^price",
+        "=owner__username",
+    )
+
     list_filter = (
         "country",
         "city",
