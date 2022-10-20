@@ -64,6 +64,9 @@ class RoomDetail(APIView):
         try:
             return Room.objects.get(pk=pk)
         except Room.DoesNotExist:
-            room = self.get_object(pk)
-            serializer = RoomDetailSerializer(room)
-            return Response(serializer.data)
+            raise NotFound
+
+    def get(self, request, pk):
+        room = self.get_object(pk)
+        serializer = RoomDetailSerializer(room)
+        return Response(serializer.data)
