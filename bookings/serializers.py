@@ -4,7 +4,7 @@ from rest_framework import serializers
 from bookings.models import Booking
 
 
-class CreateRoomBookingSerailizer(serializers.ModelSerializer):
+class CreateRoomBookingSerializer(serializers.ModelSerializer):
     check_in = serializers.DateField()
     check_out = serializers.DateField()
 
