@@ -9,6 +9,8 @@ from wishlists.WishlistSerializer import WishlistSerializer
 from wishlists.models import Wishlist
 
 
+#  GET api/v1/wishlists
+#  POST api/v1/wishlists
 class Wishlists(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -33,6 +35,8 @@ class Wishlists(APIView):
             return Response(serializer.errors)
 
 
+#  GET api/v1/wishlists/1
+#  DELETE api/v1/wishlists/1
 class WishlistDetail(APIView):
     permission_classes = [IsAuthenticated]
 
