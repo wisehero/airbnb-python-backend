@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from rooms.serializer import RoomListSerializer
+from rooms.serializers import RoomListSerializer
 from wishlists.models import Wishlist
 
 
