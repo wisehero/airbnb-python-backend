@@ -12,6 +12,7 @@ from reviews.serializers import ReviewSerializer
 from rooms.models import Amenity, Room
 from rooms.serializers import AmenitySerializer, RoomListSerializer, RoomDetailSerializer
 from users.models import User
+from wishlists.models import Wishlist
 
 
 class Amenities(APIView):
