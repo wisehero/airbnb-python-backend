@@ -13,7 +13,7 @@ from categories.models import Category
 from medias.serializers import PhotoSerializer
 from reviews.serializers import ReviewSerializer
 from rooms.models import Amenity, Room
-from rooms.serializers import AmenitySerializer, RoomListSerializer, RoomDetailSerializer
+from . import serializers
 from users.models import User
 from wishlists.models import Wishlist
 
@@ -21,15 +21,15 @@ from wishlists.models import Wishlist
 class Amenities(APIView):
     def get(self, request):
         all_amenities = Amenity.objects.all()
-        serializer = AmenitySerializer(all_amenities, many=True)
+        serializer = serializers.AmenitySerializer(all_amenities, many=True)
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = AmenitySerializer(data=request.data)
+        serializer = serializers.AmenitySerializer(data=request.data)
         if serializer.is_valid():
             amenity = serializer.save()
             return Response(
-                AmenitySerializer(amenity).data,
+                serializers.AmenitySerializer(amenity).data,
             )
         else:
             return Response(serializer.errors)
@@ -44,16 +44,16 @@ class AmenityDetail(APIView):
 
     def get(self, request, pk):
         amenity = self.get_object(pk)
-        serializer = AmenitySerializer(amenity)
+        serializer = serializers.AmenitySerializer(amenity)
         return Response(serializer.data)
 
     def put(self, request, pk):
         amenity = self.get_object(pk)
-        serializer = AmenitySerializer(amenity, data=request.data, partial=True)
+        serializer = serializers.AmenitySerializer(amenity, data=request.data, partial=True)
         if serializer.is_valid():
             updated_amenity = serializer.save()
             return Response(
-                AmenitySerializer(updated_amenity).data,
+                serializers.AmenitySerializer(updated_amenity).data,
             )
         return Response(serializer.data)
 
@@ -68,14 +68,14 @@ class Rooms(APIView):
 
     def get(self, request):
         all_rooms = Room.objects.all()
-        serializer = RoomListSerializer(
+        serializer = serializers.RoomListSerializer(
             all_rooms,
             many=True,
             context={"request": request})
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = RoomDetailSerializer(data=request.data)
+        serializer = serializers.RoomDetailSerializer(data=request.data)
         if serializer.is_valid():
             category_pk = request.data.get("category")
             if not category_pk:
@@ -96,7 +96,7 @@ class Rooms(APIView):
                     for amenity_pk in amenities:
                         amenity = Amenity.objects.get(pk=amenity_pk)
                         room.amenities.add(amenity)
-                    serializer = RoomDetailSerializer(room)
+                    serializer = serializers.RoomDetailSerializer(room)
                     return Response(serializer.data)
             except Exception:
                 raise ParseError("Amenity not found")
@@ -115,7 +115,7 @@ class RoomDetail(APIView):
 
     def get(self, request, pk):
         room = self.get_object(pk)
-        serializer = RoomDetailSerializer(
+        serializer = serializers.RoomDetailSerializer(
             room,
             context={"request": request}
         )
@@ -125,7 +125,7 @@ class RoomDetail(APIView):
         room = self.get_object(pk)
         if room.owner != request.user:
             raise PermissionDenied
-        serializer = RoomDetailSerializer(
+        serializer = serializers.RoomDetailSerializer(
             room,  # 수정 대상 객체
             data=request.data,  # 수정할 데이터를 담은 객체
             partial=True
@@ -167,7 +167,7 @@ class RoomDetail(APIView):
                     except Exception:
                         raise ParseError("Amenity")
             return Response(
-                RoomDetailSerializer(updated_room).data,
+                serializers.RoomDetailSerializer(updated_room).data,
             )
         else:
             return Response(serializer.errors)

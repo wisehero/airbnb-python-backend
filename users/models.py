@@ -21,7 +21,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=150,
                                  editable=False)
     # Own field
-    avatar = models.ImageField(blank=True)  # poetry install Pillow
+    avatar = models.URLField(blank=True)  # poetry install Pillow
     name = models.CharField(
         max_length=150,
         default="")
