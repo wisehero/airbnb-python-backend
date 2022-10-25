@@ -12,11 +12,13 @@ from .models import User
 class Me(APIView):
     permission_classes = [IsAuthenticated]
 
+    # My Page
     def get(self, request):
         user = request.user
         serializer = serializers.PrivateUserSerializer(user)
         return Response(serializer.data)
 
+    # edit Profile
     def put(self, request):
         user = request.user
         serializer = serializers.PrivateUserSerializer(
