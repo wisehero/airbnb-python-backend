@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 THIRD_PARTY_APPS = [
     "rest_framework",
+    "rest_framework.authtoken",
 ]
 
 CUSTOM_APPS = [
@@ -142,3 +143,9 @@ MEDIA_ROOT = 'uploads'  # 실제 파일들이 저장되는 곳
 MEDIA_URL = 'user-uploads/'  # 브라우저가 파일에 찾아가는 url
 
 PAGE_SIZE = 3
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+}
