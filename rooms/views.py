@@ -191,7 +191,7 @@ class RoomReviews(APIView):
 
     def get(self, request, pk):
         try:
-            page = request.query_param.get("page", 1)
+            page = request.query_params.get("page", 1)
             page = int(page)
         except ValueError:
             page = 1
