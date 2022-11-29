@@ -22,7 +22,7 @@ export default function Header() {
             py={5}
             px={10}
             borderBottomWidth={1}>
-            <Box>
+            <Box color="red.500">
                 <Link to={"/"}>
                     <FaAirbnb size={"48"}/>
                 </Link>

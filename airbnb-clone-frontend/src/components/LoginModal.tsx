@@ -22,7 +22,7 @@ interface LoginModalProps {
 
 export default function LoginModal({isOpen, onClose}: LoginModalProps) {
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal onClose={onClose} isOpen={isOpen}>
             <ModalOverlay/>
             <ModalContent>
                 <ModalHeader>Log in</ModalHeader>
@@ -32,23 +32,27 @@ export default function LoginModal({isOpen, onClose}: LoginModalProps) {
                         <InputGroup size={"md"}>
                             <InputLeftElement
                                 children={
-                                    <Box color={"gray.500"}>
+                                    <Box color="gray.500">
                                         <FaUserNinja/>
                                     </Box>
-                                }/>
-                            <Input variant={"filled"} placeholder="Username"></Input>
+                                }
+                            />
+                            <Input variant={"filled"} placeholder="Username"/>
                         </InputGroup>
                         <InputGroup>
                             <InputLeftElement
                                 children={
-                                    <Box color={"gray.500"}>
+                                    <Box color="gray.500">
                                         <FaLock/>
                                     </Box>
-                                }/>
-                            <Input variant={"filled"} placeholder={"Password"}></Input>
+                                }
+                            />
+                            <Input variant={"filled"} placeholder="Password"/>
                         </InputGroup>
                     </VStack>
-                    <Button mt={4} colorScheme={"red"} w="100%">Log in</Button>
+                    <Button mt={4} colorScheme={"red"} w="100%">
+                        Log in
+                    </Button>
                     <SocialLogin/>
                 </ModalBody>
             </ModalContent>
